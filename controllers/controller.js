@@ -33,7 +33,7 @@ app.get("/page1", function (req, res) {
         if (err) {
             throw err;
         }
-        console.log(result);
+        // console.log(result);
         res.render("index", { games_data: result });
     })
 });
@@ -119,6 +119,32 @@ app.get("/page10", function (req, res) {
     })
 });
 
+
+// ADD NEW //
+app.post("/page", function(req, res) {
+    console.log(req.body);
+
+    var addall = {
+        Name: req.body.name,
+        Platform: req.body.platform,
+        Year_of_Release: req.body.release,
+        Genre: req.body.genre,
+        Publisher: req.body.publisher,
+        Developer: req.body.developer,
+        Rating: req.body.rating
+    };
+
+    connection.query("INSERT INTO `games_data` SET ?", addall,
+        function(err, result) {
+            if (err) {
+                throw err;
+            }
+            res.redirect('back');
+            alert('Game Added')
+        });
+});
+
+
 // DELETE //
 app.post("/:id", function(req, res) {
     connection.query("DELETE FROM `games_data` WHERE id = ?", [req.params.id], function(err, result) {
@@ -127,18 +153,6 @@ app.post("/:id", function(req, res) {
         }
         res.redirect("back");
     });
-});
-
-
-// ADD NEW //
-app.post("/page:", function(req, res) {
-    connection.query("INSERT INTO `games`.`games_data` (`Name`, `Platform`, `Year_of_Release`, `Genre`, `Publisher`, `Developer`, `Rating`) VALUES ('?', '?', '?', '?', '?', '?', '?')", [req.body.name, req.body.platform, req.body.release, req.body.genre, req.body.publisher, req.body.developer, req.body.rating],
-        function(err, result) {
-            if (err) {
-                throw err;
-            }
-            res.redirect('/');
-        });
 });
 
 
