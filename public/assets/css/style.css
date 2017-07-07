@@ -1,0 +1,16 @@
+
+.navname {
+    font-size: 70px;
+    font-weight: bold;
+    color: #eeeeee;
+}
+
+.navpic {
+    height: 90px;
+    margin-top: 5px;
+}
+
+#nav1 {
+    background-image: url("http://i.imgur.com/QMuikDg.jpg");
+    background-size: contain;
+}

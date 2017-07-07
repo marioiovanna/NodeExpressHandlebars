@@ -1,0 +1,151 @@
+
+
+<div class="container text-center">
+
+    <div class="row">
+        <div class="col-md-6">
+        <h2>Add Games Data</h2>
+
+    <form class="create-form" action="/page:" method="POST">
+        <div class="form-group row">
+            <div class="col-xs-6">
+                <label>NAME</label>
+                <input class="form-control" name="name" type="text">
+            </div>
+            <div class="col-xs-3">
+                <label>PLATFORM</label>
+                <input class="form-control" name="platform" type="text">
+            </div>
+            <div class="col-xs-3">
+                <label >RELEASE</label>
+                <input class="form-control" name="release" type="text">
+            </div>
+
+            <!-- WHITE SPACES -->
+            <div class="col-xs-12">
+                <label></label>
+            </div>
+            <!-- END WHITE SPACES -->
+
+            <div class="col-xs-3">
+                <label >GENRE</label>
+                <input class="form-control" name="genre" type="text">
+            </div>
+            <div class="col-xs-3">
+                <label >PUBLISHER</label>
+                <input class="form-control" name="publisher" type="text">
+            </div>
+            <div class="col-xs-4">
+                <label >DEVELOPER</label>
+                <input class="form-control" name="developer" type="text">
+            </div>
+            <div class="col-xs-2">
+                <label >RATING</label>
+                <input class="form-control" name="rating" type="text">
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Add Game</button>
+    </form>
+            <hr>
+    </div>
+
+        <!--SEARCH BAR-->
+        <div class="col-md-6 search">
+        <h2>Search Games Data</h2>
+            <br>
+            <form class="create-form" action="/search" method="POST">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control" placeholder="Search by Name">
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- END SEARCH -->
+
+        <div class="col-md-6">
+            <hr>
+        </div>
+
+        <h2>Update Games</h2>
+        <form action="/update" method="POST" class="button-size">
+            <div class="col-md-1">
+                <input class="form-control" name="id" type="text" placeholder="ID">
+            </div>
+            <div class="col-md-4">
+                <textarea class="form-control" rows="3" id="comment" placeholder="Edit new NAME here"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Update </button>
+        </form>
+    </div>
+    <hr>
+
+
+    <br>
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination pagination-lg">
+            <li>
+                <a href="/page1" aria-label="Previous">
+                    <span aria-hidden="true">First &laquo;</span>
+                </a>
+            </li>
+            <li><a href="/page1">1</a></li>
+            <li><a href="/page2">2</a></li>
+            <li><a href="/page3">3</a></li>
+            <li><a href="/page4">4</a></li>
+            <li><a href="/page5">5</a></li>
+            <li><a href="/page6">6</a></li>
+            <li><a href="/page7">7</a></li>
+            <li><a href="/page8">8</a></li>
+            <li><a href="/page9">9</a></li>
+            <li><a href="/page10">10</a></li>
+            <li>
+                <a href="/page10" aria-label="Next">
+                    <span aria-hidden="true">&raquo; Last</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+    <div class="container">
+    <table class="table table-hover table-condensed">
+        <thead>
+         <tr>
+             <th>ID</th>
+             <th>NAME</th>
+             <th>PLATFORM</th>
+             <th>RELEASE</th>
+             <th>GENRE</th>
+             <th>PUBLISHER</th>
+             <th>DEVELOPER</th>
+             <th>RATING</th>
+             <th></th>
+         </tr>
+        </thead>
+
+    {{#each games_data}}
+    <tbody>
+    <tr>
+        <td>{{this.id}}</td>
+        <td>{{this.Name}}</td>
+        <td>{{this.Platform}}</td>
+        <td>{{this.Year_of_Release}}</td>
+        <td>{{this.Genre}}</td>
+        <td>{{this.Publisher}}</td>
+        <td>{{this.Developer}}</td>
+        <td>{{this.Rating}}</td>
+
+        <td><form method="POST" action="/{{this.id}}?_method=DELETE">
+            <input type="hidden" name="id" value="{{this.id}}">
+            <button class="btn-danger" type="submit"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+        </form></td>
+    </tr>
+    {{/each}}
+    </tbody>
+    </table>
+    </div>
